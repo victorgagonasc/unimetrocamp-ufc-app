@@ -1,0 +1,16 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Ultimate Fighting Championship (UFC)</mat-card-title>
+    <mat-card-subtitle>v 1.0.0</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="http://www.sclance.com/backgrounds/ufc-background/ufc-background_2284415.jpg"
+    alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      Aplicativo Web para visualização e gerenciamento de conteúdo do UFC
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button *ngFor="let item of routes" [routerLink]="item.route">{{ item.title }}</button>
+  </mat-card-actions>
+</mat-card>

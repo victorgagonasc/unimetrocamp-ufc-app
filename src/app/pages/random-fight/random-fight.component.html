@@ -1,0 +1,82 @@
+<mat-card class="random-card">
+  <mat-card-header>
+    <mat-card-title>Luta aleatória</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Gênero</mat-label>
+      <mat-select [(value)]="selectedGender" (selectionChange)="genderChange($event.value)">
+        <mat-option value="Masculino">Masculino</mat-option>
+        <mat-option value="Feminino">Feminino</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Categoria</mat-label>
+      <mat-select [(value)]="selectedCategory" [disabled]="!selectedGender">
+        <mat-option *ngFor="let category of categories" [value]="category.title">{{category.title}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-stroked-button [disabled]="!selectedCategory" (click)="generateFight()">Gerar luta</button>
+    <mat-grid-list cols="3" rowHeight="1:2">
+      <mat-grid-tile>
+        <mat-card>
+          <mat-chip-list>
+            <mat-chip>Lutador 1</mat-chip>
+          </mat-chip-list>
+          <mat-list role="list">
+            <mat-list-item role="listitem">
+              <p mat-line><b>Nome:</b> {{fighters[0]?.name}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Nascimento:</b> {{fighters[0]?.birthDate | date: 'dd/MM/yyyy'}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>País:</b> {{fighters[0]?.country}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Gênero:</b> {{fighters[0]?.gender}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Categoria:</b><span *ngIf="fighters[0]?.category"> Peso {{fighters[0].category}}</span></p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Peso:</b><span *ngIf="fighters[0]?.weight"> {{ fighters[0].weight}} Kg</span></p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-icon>clear</mat-icon>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card>
+          <mat-chip-list>
+            <mat-chip>Lutador 2</mat-chip>
+          </mat-chip-list>
+          <mat-list role="list">
+            <mat-list-item role="listitem">
+              <p mat-line><b>Nome:</b> {{fighters[1]?.name}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Nascimento:</b> {{fighters[1]?.birthDate | date: 'dd/MM/yyyy'}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>País:</b> {{fighters[1]?.country}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Gênero:</b> {{fighters[1]?.gender}}</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Categoria:</b><span *ngIf="fighters[1]?.category"> Peso {{fighters[1].category}}</span></p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <p mat-line><b>Peso:</b><span *ngIf="fighters[1]?.weight"> {{ fighters[1].weight}} Kg</span></p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

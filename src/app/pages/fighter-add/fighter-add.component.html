@@ -1,0 +1,81 @@
+<form [formGroup]="fighterForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Novo lutador</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nome" formControlName="name">
+            <mat-error *ngIf="fighterForm.controls['name'].hasError('required')">
+              Nome <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Data de nascimento" formControlName="birthDate" [min]="minDate" [max]="maxDate"
+              [matDatepicker]="myDatepicker">
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker startView="year" [startAt]="minDate"></mat-datepicker>
+            <mat-error *ngIf="fighterForm.controls['birthDate'].hasError('required')">
+              Data de aniversário <strong>obrigatória</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="País" formControlName="country">
+            <mat-error *ngIf="fighterForm.controls['country'].hasError('required')">
+              País <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Gênero" formControlName="gender" (selectionChange)="genderChange($event.value)">
+              <mat-option value="Masculino">Masculino</mat-option>
+              <mat-option value="Feminino">Feminino</mat-option>
+            </mat-select>
+            <mat-error *ngIf="fighterForm.controls['gender'].hasError('required')">
+              Gênero <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Categoria" [disabled]="fighterForm.value.gender == null" formControlName="category"
+              (selectionChange)="categoryChange($event.value)">
+              <mat-option *ngFor="let category of categories" [value]="category.title">{{category.title}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="fighterForm.controls['gender'].hasError('required')">
+              Gênero <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="number" step="1" min="5" max="10" placeholder="Peso" formControlName="weight">
+            <mat-error *ngIf="fighterForm.controls['weight'].hasError('required')">
+              Peso <strong>obrigatório</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="fighterForm.controls['weight'].hasError('min') || fighterForm.controls['weight'].hasError('max')">
+              Peso <strong>inválido</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-hint *ngIf="fighterForm.controls['category'].value">Min: {{ this.weightLimits.min}} Max:
+            {{ this.weightLimits.max}}</mat-hint>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!fighterForm.valid">Salvar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

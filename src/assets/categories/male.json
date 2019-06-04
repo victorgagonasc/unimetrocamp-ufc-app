@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Mosca",
+        "weight": 56.7
+    },
+    {
+        "title": "Galo",
+        "weight": 61.2
+    },
+    {
+        "title": "Pena",
+        "weight": 65.7
+    },
+    {
+        "title": "Leve",
+        "weight": 70.3
+    },
+    {
+        "title": "Meio-Médio",
+        "weight": 77.1
+    },
+    {
+        "title": "Médio",
+        "weight": 83.9
+    },
+    {
+        "title": "Meio-Pesado",
+        "weight": 92.9
+    },
+    {
+        "title": "Pesado",
+        "weight": 120.2
+    }
+]
